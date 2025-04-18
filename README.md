@@ -23,7 +23,11 @@ _________________
 # Updates
 __________
 
-We Up
+We Update the main program every 1-2 weaks and the seperate programs and projects every 2-4 weeks, They are not major big ssized files either, they range on each update but on average expect about a 5-20 Kilobyte update
+
+
+## Banner Preview
+------------------
 
 ![Main Banner](https://github.com/Syxfer/TSecurity/blob/main/Screenshot%202025-04-17%20211445.png)
-![Tools Banner]()
+![Tools Banner](https://github.com/Syxfer/TSecurity/blob/main/Screenshot%202025-04-17%20210944.png)
