@@ -19,3 +19,11 @@ Despite the current development phase of our support resources, TSecurity's core
 _________________
 
 ### COMING SOON
+
+# Updates
+__________
+
+We Up
+
+![Main Banner]()
+![Tools Banner]()
