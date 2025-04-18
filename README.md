@@ -18,4 +18,4 @@ Despite the current development phase of our support resources, TSecurity's core
 # Discord Group
 _________________
 
-###COMING SOON
+### COMING SOON
