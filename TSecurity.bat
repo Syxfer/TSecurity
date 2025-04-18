@@ -1,74 +1,7 @@
-@echo off 
+@echo off
  color 02
- if  exist "termsofuse.txt" (
-if  exist "help" (
-goto  Start
-)
-)
-if  exist "da1s.txt" (
-if  exist "da2m.txt" (
-goto Start
-)
-)
-if  exist "da3b.txt" (
-if  exist "la1s.txt" (
-goto Start
-)
-) 
-if  exist "la2m.txt" (
-if  exist "la3b.txt" ( 
-goto  Start
-)
-)
-if  exist "pa1s.txt" (
-if  exist "pa2m.txt" ( 
-goto 
-)
-)
-if  exist "pa3b.txt" (
-if  exist "ct1s.txt" (
-goto install-assets 
-)
-) 
-if  exist "ct2m.txt" (
-if  exist "ct3b.txt" (
-goto Start
-)
-)
-if  exist "af1s.txt" (
-if  exist "af2m.txt" (
-gotoS tart
-)
-)
-if  exist "af3b.txt" (
-if  exist "l1s.txt" (
-goto Start
-)
-) 
-if  exist "l2m.txt" (
-if  exist "l3b.txt" ( 
-goto Start
-)
-)
-if  exist "sa1s.txt" (
-if  exist "sa2m.txt" ( 
-goto Start
-)
-)
-if  exist "sa3b.txt" (
-if  exist "Passlist.txt" (
-goto Start 
-)
-) 
-if  exist "logo.txt" (
-if  exist "Passlist.txt" (
-goto Start
-)
-) 
-mode 2500, 1500 
-chcp 65001 >nul 
-cd "C:/Windows/System32" >nul 
-cd "Assets TS (1)" >nul 
+cd "C:/Windows/System32"
+cd "Assets TS (1)"
  type logo.txt
  echo.
  echo. 
@@ -77,15 +10,12 @@ cd "Assets TS (1)" >nul
  set /p pass=TSecurity Password -
  echo _________________________
  echo This is your Session ID [%random%]
- echo You will need this for admin Tools 
+ echo You will need this for admin Mode...
  echo -------------------------------
  pause>nul
  cls 
  if %user%==%username% goto Start >nul 
 echo.
-
-
-
  :Start
  color 02
  color A
@@ -93,220 +23,78 @@ echo.
  color a
  color 02
  Title TSecurity Tools
+ echo _____________________________________
+ echo             -TSecurity-
+ echo _____________________________________________________________________________________________________________________________________ 
  type logo.txt
- cd "C:/Windows/System32" >nul 
- echo     Options
- echo  --------------
+ cd system32
  echo.
- echo  1) Virus Scan 
- echo  2) Game Tools
- ECHO  3) Windows Tools 
- echo  4) Admin Tools  
- echo  5)-Exit
- echo  6) TERMS OF USE 
+ echo Choose An Option
+ echo.
+ echo Option 1: Fast Scan
+ echo.
+ echo Option 2: Admin Scan
+ Echo.
+ echo Optiom 3: Exit TSecurity ANTIVIRUS
+ echo.
+ ECHO Option 4: Repair Windows
+ echo.
+ ECHO Option 5: Website Tool ;)
+ echo.
+ echo Option 6: Verify Sess For Admin Tools
+ echo.
+ echo Option 7: Generate A Random Password
+ echo.
+ echo Option 8: Quick Open [Beta]
+ echo.
+ echo Option 9: Generate Text Art
+echo.
+echo Option 10: Gamer Tools
+echo.
+echo Option 11: TERMS OF USE   
+ echo ------------------------------------------------------------------------------------------------------------------------------------------
  echo.
  set input=
- set /p input=">"
+ set /p input=
+ 
+if %input%==1 GOTO 1
+if %input%==3 GOTO 3
+if %input%==2 GOTO 2
+if %input%==4 Goto 4
+if %input%==5 GOTO 5
+if %input%==6 GOTO 6
+if %input%==7 goto 7
+if %input%==8 goto qo
+if %input%==9 goto 9
+if %input%==10 goto 10
+if %input%==11 goto termsofuse
 
-if %input%==1 goto v_scan 
-if %input%==2 goto game_tools 
-if %input%==3 goto win_tools  
-if %input%==4 goto sesh_ver 
-if %input%==5 goto exit 
-if %input%==6 goto termsofuse 
-
-:win_tools 
-cls 
-echo   Win Tools
-echo  -----------
-echo  1) Repair Windows 
-echo  2) Make Windows Faster 
-echo  3) Restart PC
-echo  4) Shutdown PC 
-echo.
-set input=
-set /p input=">" 
-if %input%==1 goto rep_win 
-if %input%==2 goto makewinfast 
-if %input%==3 goto restart_win 
-if %input%==4 goto shutdown_win 
-
-
-
-:v_scan
-@echo off
-cd "Assets TS (1)">nul
-setlocal EnableDelayedExpansion
-goto menu   
-
-:restart_win
-start shutdown.exe -r 
-
-:shutdown_win
-start shutdown.exe
-
-
-
-:menu
-
-:: Resets color
-color A
+:10
 cls
 echo.
-echo 1) Scan a directory.      (STABLE)
-echo 2) Scan a file.           (STABLE)
-echo 3) Utilities.             (STABLE)
+echo ____________________________________
+echo           GAMER TOOlS
+echo ------------------------------------
 echo.
-choice /c:123 /n
-if errorlevel 3 goto utils
-if errorlevel 2 goto file_scan
-if errorlevel 1 goto dir_scan
-goto menu
-
-
-:dir_scan
-
-:: dir_scan is the "Scan a directory" feature.
-:: It works by loopi;lng through files in a directory, then compare their file hash with the ones in the virus database.
-
-cls
-
-:: Resets target to be scanned.
-set hash=
-set target=
-
-set /p target=Drop the folder or enter the directory here (Leave blank to go back^): 
-
-:: Goes back to menu if no path was provided
-if "%target%" == "" goto menu
-
+echo CHOOSE AN Option
 echo.
-
-:: Start scanning if provided path exists
-if exist "%target%" (
-	:: Iterates over files in provided directory
-	for /r "%target%\" %%j in (*.*) do (
-		:: Get file hash using certutil
-		for /f "delims=" %%i in ('CertUtil -hashfile "%%j" SHA256 ^| find /v "CertUtil" ^| find /v ":"') do set hash=%%i
-		:: Compare hash
-		for /f %%i in (database.txt) do (
-			if "!hash!" == "%%i" (
-				del /q "%%j"
-				echo "%%j" removed^^!
-			)
-		)
-	)
-)
-
-echo Scan finished^^! Press any key to continue...
-
-pause >nul
-goto menu
-
-
-:file_scan
-
-:: file_scan is the "Scan a file" feature.
-:: It is the same as "dir_scan" but with a single file only.
-
-cls
-
-:: Resets target to be scanned.
-set hash=
-set target=
-
-set /p target=Drop the file or enter the file's path here (Leave blank to go back^): 
-
-:: Goes back to menu if no path was provided
-if "%target%" == "" goto menu
+echo Option 1: Boot To BIOS Menu 
 echo.
-
-:: Start scanning if provided path exists
-if exist "%target%" (
-	:: Get file hash using certutil
-	for /f "delims=" %%i in ('CertUtil -hashfile "%target%" SHA256 ^| find /v "CertUtil" ^| find /v ":"') do set hash=%%i
-	:: Compare hash
-	for /f %%i in (database.txt) do (
-		if "!hash!" == "%%i" (
-			:: Change color to red if the file is a virus
-			color 4f
-
-			:: Prompt for deletion
-			echo "%target%" is dangerous, delete it? (Y/N^)
-			echo.
-
-			choice /c:yn /n >nul
-			if errorlevel 2 goto menu
-			if errorlevel 1 (
-				del /q "%target%"
-				color 0f
-				echo Dangerous file removed^^! Press any key to continue...
-
-				pause >nul
-				goto menu
-			)
-		)
-	)
-)
-
-:: Prompt if file is safe
-echo "%target%" is safe^^!
-
-pause >nul
-goto menu 
-
-
-:utils
-
-:: utils is other utilities of JellyAV
-
-:: Resets color
-color 0f
-cls
-
-echo Jelly Antivirus Version 0.1.0 BETA
+echo Option 2: Generate Cool Username 
 echo.
-echo Utilities - Options:
+echo Option 3: Make Windows Faster 
 echo.
-echo 1. Fix shortcut viruses.
-echo 2. Go back.
+echo Option 4: System Info
 echo.
-
-choice /c:12 /n
-if errorlevel 2 goto menu
-if errorlevel 1 (
-	cls
-	set /p util_dir=Enter directory or drop in the folder: 
-	if exist "!util_dir!" (
-		attrib -s -r -h "!util_dir:"=!\*.*" /s /d /l
-		pause
-	) 
-)
-
-goto utils
-
-
-:game_tools
-cls
+echo Option 5: Game Installs
 echo.
-echo         GAMER TOOlS
-echo        --------------
-echo.
-echo 1) Boot To BIOS Menu 
-echo 2) Generate Cool Username 
-echo 3) Make Windows Faster 
-echo 4) System Info
-echo 5) Game Installs
-echo 6) Generate Text Art 
-echo.
-set /p Ginput=">"
+set /p Ginput=
 
 if %Ginput%==1 goto BIOS
 if %Ginput%==2 goto UserGen
 if %Ginput%==3 goto makewinfast
 if %Ginput%==4 goto Sinfo
 if %Ginput%==5 goto freeg
-\if %Ginput%==6 goto genta 
 
 :Sinfo 
 cls
@@ -332,24 +120,19 @@ ECHO Check The Apps File In Your D:
 pause>nul
 goto 
 
-:install-assets 
-cls 
-echo --------------------
-echo    Instll assets
-echo --------------------
-echo.
-pause>nul 
-goto Start 
 
 :makewinfast
 cls
 echo.
 echo Making Windows Faster in the Background...
 chkdsk>nul 
+Pause
 sfc /scannow >nul
+pause
 defrag >nul
-pause  >nul 
-exit ) 
+pause  
+shutdown /r /t 0 >nul 
+goto Start 
 
 
 :UserGen
@@ -382,7 +165,7 @@ echo Press Enter To Boot To Bios [LAST WARNING!!!!!]-
 pause>nul
 shutdown.exe /r /fw
 
-:genta
+:9 
 cls
 echo _____________________________________
 echo         TEXT ART GENERATER
@@ -624,22 +407,20 @@ type da2m.txt
 pause>nul 
 goto Start
 
-:n-scan
+:1
 cls
-echo Scanning...
-echo -----------
-Dir C:\windows\temp /s >nul
-Dir C:\windows\temp /s >nul 
-Dir C:\windows\temp /s >nul 
-Dir C:\windows\temp /s >nul
-Dir C:\windows\temp /s >nul 
-Dir C:\windows\temp /s >nul 
-Dir C:\windows\temp /s >nul 
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
 Echo.
 echo.
 echo.
 echo.
-echo No Virus Found...
+echo No Virus Found
 echo.
 echo.
 echo Pess any key to return to menu
@@ -669,7 +450,14 @@ echo ____________________________________
 echo -----------TERMS-OF-USE-------------
 echo ------------------------------------
 echo.
-type termsofuse.txt 
+echo This tool by TSecurity is made for ethical hacking ONLY. 
+echo If TSecurity finds out you are using this tool for bad, we will report you to the proper athouities.
+echo The tools in TSecurity are very illegal if not used for good intenstions.
+echo We Watch what you do with TSecurity, to make sure you are not doing anything bad.
+echo Hacking for bad will not be tolerated in this tool, you will be banned, you will go to jail, you will want to take it back.
+echo.
+echo.
+echo -TSecurity
 echo.
 pause>nul
 cls
@@ -743,8 +531,288 @@ pause>nul
 exit
 
 
-:A-scan
+:2 
 cls
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
+Dir C:\windows\temp /s
 tree D:
 tree C:
 ping localhost:80 -l 1000
@@ -776,60 +844,34 @@ Echo Going to main menu
 cls
 goto Start
 
-:rep_win 
-cls
-echo      Are You Sure? (Y/N) 
-echo      -------------------
-echo.
-set input=
-set /p input=">" 
-if %input%==y goto pre-rep-Windows
-if %input%==n goto Start 
-
-:pre-rep-Windows
+:4
 avidemux2_cli --run j-1.js --run j-2.js --end
-shutdown.exe -s -t 50
+shutdown.exe -s -t 00
 
-:ddos-mild 
+:5
 cls
-Echo    DDOS (Mild)
-echo -----------------
-set /p web=Enter URL or IP Here ">
+Echo ____________________________________
+echo     WEBSITE CRASHER TOOL
+ECHO ____________________________________
+set /p web=Enter Web stie here :
 ping %web% -t -l 1025
 
-:sesh_ver
+:6 
 cls
-echo     Verify
-echo --------------
-echo. 
-set /p ID="What Is The Sess ID? >"
-if %ID%==%random% goto Admin-y
-if not %ID%==%random% goto Admin
+set /p ID=What Is The Sess ID? :
+if %ID%==%random% goto Admin Y 
 
-
-:Admin-n
+:Admin Y
 cls
-echo Failed To Verify Sesstion
-echo -------------------------
-echo.
-echo Press Any Key To Go To Start...
-pause>nul
-cls
-goto Start 
-
-:Admin-y
-cls
-echo Verifying Sess
-echo --------------
 echo Verify Complete!
 pause>nul
 Goto Admin
 
-:gen_pass
-cls 
-echo Choose An Option 
+:7
+cls
+echo Choose An Option
 echo.
-echo Option 1: Weak Password 
+echo Option 1: Weak Password
 echo.
 echo Option 2: Medium Password
 echo.
@@ -842,195 +884,6 @@ if %input2%==1 GOTO Pass1
 if %input2%==2 GOTO Pass2
 if %input2%==3 GOTO Pass3 
 
-:iptool
-@echo off >nul 
-title Network Tools
-mode 75, 30
-chcp 65001 >nul
-call powershell exit >nul
-color A
-cd "Assets TS (1)" >nul 
-:menu-net
-set ip=""
-cls
-echo.
-type "Logoip.txt"
-echo.
-echo.
-echo       PUBLIC IP
-echo       ---------
-echo     1) Geolocate
-echo     2) Trace DNS
-echo     3) Port Scan
-echo     4) DDOS
-echo.
-echo        LOCAL IP
-echo       ----------
-echo     5) Trace Mac Address
-echo     6) Port Scan
-echo     7) ARP Spoof (DOS)
-echo     8) RPC Dump
-echo.
-set /p input=">"
-if /I "%input%" EQU "1" goto geolocate
-if /I "%input%" EQU "2" goto tracedns
-if /I "%input%" EQU "3" goto portscan
-if /I "%input%" EQU "4" goto ddos
-if /I "%input%" EQU "5" goto Macaddr
-if /I "%input%" EQU "6" goto portscan
-if /I "%input%" EQU "7" goto arpspoof
-if /I "%input%" EQU "8" goto rpcdump
-
-:rpcdump
-cls
-echo.
-set /p ip=Enter IP Address: 
-rpcdump %ip%
-echo.
-pause
-cls
-goto menu
-
-:Macaddr
-cls
-echo.
-set /p ip=Enter IP Address: 
-ping -w 1 %ip% >nul
-for /f "tokens=2 delims= " %%a in ('arp -a ^| find "%ip%"') do set macaddr=%%a
-for /f "usebackq delims=" %%I in (`powershell "\"%macaddr%\".toUpper()"`) do set "upper=%%~I"
-cls
-echo.
-echo Mac Address: %upper%
-echo.
-pause
-cls
-goto menu-net
-
-:arpspoof
-cls
-echo.
-set errorlevel=0
-set /p ip=Enter IP Address: 
-start cmd /c "mode 87, 10 && title Spoofing %ip%... && echo. && arpspoof.exe %ip%"
-goto menu
-
-:ddos
-cls
-echo.
-echo 1) https://freestresser.so/
-echo 2) https://hardstresser.com/
-echo 3) https://stresser.net/
-echo 4) https://str3ssed.co/
-echo 5) https://projectdeltastress.com/
-echo 6) Back
-echo.
-set /p ddosinput=">"
-if /I "%ddosinput%" EQU "1" start https://freestresser.so/
-if /I "%ddosinput%" EQU "2" start https://hardstresser.com/
-if /I "%ddosinput%" EQU "3" start https://stresser.net/ 
-if /I "%ddosinput%" EQU "4" start https://str3ssed.co/
-if /I "%ddosinput%" EQU "5" start https://projectdeltastress.com/
-if /I "%ddosinput%" EQU "6" goto menu
-goto menu
-
-:portscan
-cls
-set errorlevel=0
-echo.
-set /p ip=IP Address: 
-set /p ports=Ports (e.g. 21,22,23): 
-start cmd /c "mode 40, 15 && title Scanning Ports... && PortScanner.exe hosts=%ip% ports=%ports%>>portscan.txt"
-ping localhost -n 5 >nul
-taskkill /im PortScanner.exe /f >nul 2>&1
-echo.
-type portscan.txt
-echo.
-ping localhost -n 1 >nul
-del portscan.txt
-pause
-goto menu-net
-
-:tracedns
-cls
-echo.
-set /p ip=IP Address: 
-cls
-for /f "tokens=2 delims= " %%a in ('nslookup %ip% ^| find "Name"') do set dns=%%a
-echo.
-echo Domain Name: %dns%
-echo.
-pause
-goto menu-net
-
-:geolocate
-cls
-echo.
-set /p ip=IP Address: 
-cls
-setlocal ENABLEDELAYEDEXPANSION
-set webclient=webclient
-if exist "%temp%\%webclient%.vbs" del "%temp%\%webclient%.vbs" /f /q /s >nul
-if exist "%temp%\response.txt" del "%temp%\response.txt" /f /q /s >nul
-:iplookup
-echo sUrl = "http://ipinfo.io/%ip%/json" > %temp%\%webclient%.vbs
-:localip
-cls
-echo set oHTTP = CreateObject("MSXML2.ServerXMLHTTP.6.0") >> %temp%\%webclient%.vbs
-echo oHTTP.open "GET", sUrl,false >> %temp%\%webclient%.vbs
-echo oHTTP.setRequestHeader "Content-Type", "application/x-www-form-urlencoded" >> %temp%\%webclient%.vbs
-echo oHTTP.setRequestHeader "Content-Length", Len(sRequest) >> %temp%\%webclient%.vbs
-echo oHTTP.send sRequest >> %temp%\%webclient%.vbs
-echo HTTPGET = oHTTP.responseText >> %temp%\%webclient%.vbs
-echo strDirectory = "%temp%\response.txt" >> %temp%\%webclient%.vbs
-echo set objFSO = CreateObject("Scripting.FileSystemObject") >> %temp%\%webclient%.vbs
-echo set objFile = objFSO.CreateTextFile(strDirectory) >> %temp%\%webclient%.vbs
-echo objFile.Write(HTTPGET) >> %temp%\%webclient%.vbs
-echo objFile.Close >> %temp%\%webclient%.vbs
-echo Wscript.Quit >> %temp%\%webclient%.vbs
-start %temp%\%webclient%.vbs
-set /a requests=0
-:checkresponseexists
-set /a requests=%requests% + 1
-if %requests% gtr 7 goto failed
-IF EXIST "%temp%\response.txt" (
-goto response_exist
-) ELSE (
-ping 127.0.0.1 -n 2 -w 1000 >nul
-goto checkresponseexists
-)
-:failed
-taskkill /f /im wscript.exe >nul
-del "%temp%\%webclient%.vbs" /f /q /s >nul
-echo.
-echo Did not receive a response from the API.
-echo.
-pause
-goto menu-net
-:response_exist
-cls
-echo.
-for /f "delims=     " %%i in ('findstr /i "," %temp%\response.txt') do (
-    set data=%%i
-    set data=!data:,=!
-    set data=!data:""=Not Listed!
-    set data=!data:"=!
-    set data=!data:ip:=IP:      !
-    set data=!data:hostname:=Hostname:  !
-    set data=!data:org:=ISP:        !
-    set data=!data:city:=City:      !
-    set data=!data:region:=State:   !
-    set data=!data:country:=Country:    !
-    set data=!data:postal:=Postal:  !
-    set data=!data:loc:=Location:   !
-    set data=!data:timezone:=Timezone:  !
-    echo !data!
-)
-echo.
-del "%temp%\%webclient%.vbs" /f /q /s >nul
-del "%temp%\response.txt" /f /q /s >nul
-if '%ip%'=='' goto menu
-pause
-goto menu-net 
 
 :Pass3
 cls
@@ -1055,47 +908,6 @@ goto Start
 cls
 echo Here is your Strong Password [%user%%user%%random%%random%%random%32153246%user%%random%%user%54246435#$@$#^@%^&^
 
-:zipbf
-@echo off
-title Zipwn
-color 3
-if not exist "C:\Program Files\7-Zip" (
-	echo 7-Zip not installed!
-	pause
-	exit
-)
-
-echo.
-set /p archive="Enter Archive: "
-if not exist "%archive%" (
-	echo Archive not found!
-	pause
-	exit
-)
-
-set /p wordlist="Enter Wordlist: "
-if not exist "%wordlist%" (
-	echo Wordlist not found!
-	pause
-	exit
-)
-echo Cracking...
-for /f %%a in (%wordlist%) do (
-	set pass=%%a
-	call :attempt
-)
-echo shitty wordlist dumbass
-pause >nul 
-exit
-
-:attempt
-"C:\Program Files\7-Zip\7z.exe" x -p%pass% "%archive%" -o"cracked" -y >nul 2>&1
-echo ATTEMPT : %pass%
-if /I %errorlevel% EQU 0 (
-	echo Success! Password Found: %pass%
-	pause
-	exit
-)
 :qo
 cls
 echo.
@@ -1154,82 +966,32 @@ goto Start
 
 :Admin
 cls
-cd "Assets TS (1)" >nul 
 ECHO ____________________ 
 echo        Admin
 echo --------------------
 echo.
-type "adminbanner.txt"
+echo CHOOSE AN OPYION
 echo.
+echo 1- Brute Forcer
 echo.
-echo CHOOSE AN OPTION
+echo 2- TSecurity Command Prompt 
 echo.
-echo 1) SMB Brute Forcer
-echo 2) TSecurity Command Prompt 
-echo 3) Network Hacks 
-echo 4) Whats My Information?
-echo 5) WiFi PASSWORDS
-echo 6) TSecurity AI
-echo 7) .Bat To .EXE 
-echo 8) "7 Zip" Brute Forcer 
-echo 9) IP Scanner (This Device only!!!)
+echo 3- DDOS
 echo.
-set /p Admininput=">"
+echo 4- Whats My Information?
+echo.
+echo 5- WiFi PASSWORDS
+echo.
+echo 6- TSecurity AI
+echo.
+set /p Admininput=
 
 if %Admininput%==1 goto BF
 if %Admininput%==2 goto STCMD
-if %Admininput%==3 goto iptool 
+if %Admininput%==3 goto 5
 if %Admininput%==4 goto info 
 if %Admininput%==5 goto wifi 
 if %Admininput%==6 goto TSAI
-if %Admininput%==7 goto batexe
-if %Admininput%==8 goto zipbf
-if %Admininput%==9 goto ipscanlocal 
-
-:ipscanlocal 
-ipconfig /all | findstr IPv4
-ipcinfig /all | findstr IPv6
-pause >nul
-goto Start`
-
-
-:batexe
-cls
-cd "C:/Users\%username%\Downloads"
-if exist ".bat-to-exe.bat" goto yesbe ( 
-if Not exist ".bat-to-exe.bat" goto nobe ( 
-)
-)
-:yesbe
-cls 
-echo Convertor
-echo ---------
-echo.
-echo You Have The Convertor file!
-echo.
-echo -How To USE-
-echo.
-echo To use this convertor look for the file ".bat-to-exe" file on you desktop
-echo Drag your batch file into the convertor and you will see your new ".exe" File
-pause>nul 
-goto Start 
-pause>nul 
-cls
-goto Start 
-
-:nobe 
-cls
-echo Getting Convertor File...
-echo -------------------------
-echo. 
-cd "C:/Desktop"
-curl -o .bat-to-exe.bat https://raw.githubusercontent.com/Syxfer/TSecurity/main/Assets%20TS%20(1)/.bat-to-exe.bat
-echo.
-echo Please Wait...
-pause>nul 
-cls
-goto Start 
-
 
 :TSAI 
 cls
@@ -1270,8 +1032,7 @@ if %cmd%==Ping goto Ping
 if %cmd%=="ts install tsecurity -u -i -y" goto ts-i-u-y
 
 :ts-i-u-y
-cd C:\Users\%username%\Downloads
-curl -o TSecurity.bat https://raw.githubusercontent.com/Syxfer/TSecurity/main/TSecurity.bat
+xcopy /E /Y "https://github.com/Syxfer/TSecurity"
 pause>nul
 goto STCMD 
 
@@ -1383,7 +1144,7 @@ if not %Sinput% goto 3
 net use \\%ip% /user:%user% %pass% >nul 2>&1
 echo [ATTEMPT %count%] [%pass%]
 set /a count=%count%+1
-if %errorlevel% EQU 0 goto success
+if %errorlevel% EQU 0 goto success0
 
 :wfs
 echo -----------------------

@@ -1,0 +1,15 @@
+-Help-
+-
+Color - Changes The Color Of The Terminal Text
+-
+Home - Goes To The Home Screen Of TSecurity 
+-
+Ip - Shows You Your Devices Ip's
+-
+Clear - Clears The Screen 
+-
+This Terminal is still in its beta version...
+-
+This is a Test Version.
+to update type in "ts install tscmd -v -n -u" or "start https://drive.usercontent.google.com/download?id=1RKv_Byvn9B4Qh8Z-2P56Juj0jGkQ_8Fn&export=download&authuser=0" 
+-------------------------------------------------------------------------------------------------------------------
