@@ -1,3 +1,9 @@
+# About TSecurity
+___________________
+
+TSecurity represents a sophisticated suite of cybersecurity utilities designed to empower both ethical security professionals and individual users in proactively assessing the resilience of digital systems. Our primary focus centers on providing a comprehensive platform for rigorous cybersecurity testing. Beyond this core initiative, our development efforts extend to a diverse array of tools tailored for the Windows operating environment and various other applications. We are confident that you will find our software to be a valuable asset and we extend our best wishes for a productive and secure computing experience.
+
+
 # TSecurity - Important Notice Regarding Tool Installation and Usage
 
 ^ATTENTION - Users may encounter complex bugs and intricate issues during the download or installation of TSecurity's tools. These challenges can often be readily resolved through direct support.^
@@ -23,7 +29,7 @@ _________________
 # Updates
 __________
 
-We Update the main program every 1-2 weaks and the seperate programs and projects every 2-4 weeks, They are not major big ssized files either, they range on each update but on average expect about a 5-20 Kilobyte update
+Our primary application undergoes regular updates on a bi-weekly cadence, while individual programs and projects receive updates within a 2-4 week timeframe. These updates are designed to be efficient, resulting in relatively small file sizes. While the specific size may vary with each release, users can typically anticipate updates ranging from approximately 5 to 20 kilobytes.
 
 
 ## Banner Preview
