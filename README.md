@@ -3,6 +3,12 @@ ___________________
 
 TSecurity represents a sophisticated suite of cybersecurity utilities designed to empower both ethical security professionals and individual users in proactively assessing the resilience of digital systems. Our primary focus centers on providing a comprehensive platform for rigorous cybersecurity testing. Beyond this core initiative, our development efforts extend to a diverse array of tools tailored for the Windows operating environment and various other applications. We are confident that you will find our software to be a valuable asset and we extend our best wishes for a productive and secure computing experience.
 
+# WARNING
+_________
+
+## MAKE SURE TO DOWNLOAD THE ASSETS AND MAKE A FOLDER CALLED 'Assets TS (1)' !!!!!!!!!!
+## YOU ARE NOT ALLOWED TO USE ANY OF THE TOOLS MADE BY TSECURITY WITHOUT EXEPTING THE TERMS OF USE AND PRIVATE POLICY !!!!!!!!!!!
+
 
 # TSecurity - Important Notice Regarding Tool Installation and Usage
 
