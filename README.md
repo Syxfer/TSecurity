@@ -50,3 +50,4 @@ _______________
 ### Email - TS.Tools.Offical@gmail.com
 ### Phone - 
 ### Support - 
+### Discord - 
